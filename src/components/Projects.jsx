@@ -1,105 +1,119 @@
-import React, { useState } from 'react';
-import { ArrowLeft, ArrowRight, ExternalLink, Code, User } from 'lucide-react';
+import React from "react";
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaExternalLinkAlt,
+  FaUserCircle,
+} from "react-icons/fa";
 
+import projectImage from "../assets/hero.png";
 
-import ProjectImage from '../assets/hero.png'; 
-
-const projectsData = [
-  {
-    id: 1,
-    category: 'UI/UX Design',
-    title: 'Creative Portfolio Platform',
-    desc: 'Platform showcase karya mahasiswa dengan sistem rating dan feedback komunitas.',
-    team: [{name: 'Budi Santoso', role: 'Frontend Developer'}, {name: 'Siti Aminah', role: 'UI/UX Designer'}, {name: 'Adi Nugroho', role: 'Backend Developer'}],
-    image: ProjectImage,
-    link: '#',
-    color: 'bg-blue-200'
-  },
- 
-];
+/* =======================
+   DATA STATIS PROJECT
+======================= */
+const projectData = {
+  category: "UI/UX Design",
+  title: "Creative Portfolio Platform",
+  description:
+    "Platform showcase karya mahasiswa dengan sistem rating dan feedback komunitas.",
+  team: [
+    { name: "Budi Santoso", role: "Frontend Developer", photo: null },
+    { name: "Budi Santoso", role: "Frontend Developer", photo: null },
+    { name: "Budi Santoso", role: "Frontend Developer", photo: null },
+  ],
+};
 
 const Projects = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const currentProject = projectsData[currentIndex];
-
-  const nextProject = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % projectsData.length);
-  };
-
-  const prevProject = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + projectsData.length) % projectsData.length);
-  };
-
   return (
-    <section className="py-20 bg-gray-50" id="projects">
-      <div className="max-w-7xl mx-auto text-center px-6">
-        <h2 className="text-3xl font-extrabold text-blue-800 mb-2">Showcase Student Projects</h2>
-        <p className="text-gray-600 mb-12">
-          Karya-karya inovatif yang telah dihasilkan oleh mahasiswa dalam program Ruang Ekspresi
+    <section className="py-16 px-4 bg-pink-50">
+      {/* ================= TITLE ================= */}
+      <div className="max-w-7xl mx-auto text-center mb-12">
+        <h2 className="text-3xl font-bold text-blue-700">
+          Showcase Student Projects
+        </h2>
+        <p className="text-gray-600 mt-2">
+          Karya-karya inovatif yang telah dihasilkan oleh mahasiswa dalam program
+          Ruang Ekspresi
         </p>
+      </div>
 
-        <div className="relative flex items-center bg-pink-50 rounded-3xl p-10 shadow-xl border border-pink-100"> 
-          
-          <button 
-            onClick={prevProject} 
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 -ml-6 bg-white p-3 rounded-full shadow-lg border border-gray-200 hover:bg-gray-100 transition"
-          >
-            <ArrowLeft className="w-6 h-6 text-blue-600" />
-          </button>
+      {/* ================= CONTENT ================= */}
+      <div className="max-w-6xl mx-auto flex items-center relative">
+        {/* Arrow Left */}
+        <button className="absolute -left-10 bg-white p-3 rounded-full shadow-lg hidden md:block border">
+          <FaArrowLeft className="text-gray-600 text-lg" />
+        </button>
 
-         
-          <div className="flex w-full items-center justify-between">
-            
-            <div className="w-5/12 text-left p-6">
-              <span className={`px-4 py-1 rounded-full text-blue-700 text-sm font-semibold mb-4 inline-block ${currentProject.color}`}>
-                {currentProject.category}
-              </span>
-              <h3 className="text-4xl font-bold text-gray-900 mb-4">{currentProject.title}</h3>
-              <p className="text-gray-600 mb-6">{currentProject.desc}</p>
-              
-              <p className="font-semibold text-gray-800 mb-3">Tim Pembuat:</p>
-              <div className="space-y-3 mb-8">
-                {currentProject.team.map((member, index) => (
-                  <div key={index} className="flex items-center space-x-3">
+        {/* Card */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-white p-6 md:p-10 rounded-2xl shadow-md w-full">
+          {/* ===== LEFT CONTENT ===== */}
+          <div>
+            <span className="inline-block bg-blue-100 text-blue-700 text-sm font-medium px-3 py-1 rounded-full mb-4">
+              {projectData.category}
+            </span>
 
-                    <div className="w-10 h-10 rounded-full bg-blue-300 flex items-center justify-center text-white font-bold">
-                        <User className='w-5 h-5'/>
-                    </div>
-                    <div>
-                        <p className="font-medium text-sm text-gray-800">{member.name}</p>
-                        <p className="text-xs text-blue-600">{member.role}</p>
-                    </div>
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">
+              {projectData.title}
+            </h3>
+
+            <p className="text-gray-600 mb-6">
+              {projectData.description}
+            </p>
+
+            <h4 className="font-semibold text-gray-800 mb-3">
+              Tim Pembuat :
+            </h4>
+
+            <div className="space-y-3 mb-8">
+              {projectData.team.map((member, index) => (
+                <div
+                  key={index}
+                  className="flex items-center space-x-3"
+                >
+                  {member.photo ? (
+                    <img
+                      src={member.photo}
+                      alt={member.name}
+                      className="w-8 h-8 rounded-full object-cover"
+                    />
+                  ) : (
+                    <FaUserCircle className="w-8 h-8 text-gray-400" />
+                  )}
+
+                  <div>
+                    <p className="text-sm font-medium text-gray-800">
+                      {member.name}
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      {member.role}
+                    </p>
                   </div>
-                ))}
-              </div>
-
-              <a 
-                href={currentProject.link} 
-                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition"
-              >
-                <ExternalLink className="w-4 h-4 mr-2" />
-                Live Demo
-              </a>
+                </div>
+              ))}
             </div>
 
-            
-            <div className="w-6/12 p-4 flex justify-center items-center rounded-2xl border-4 border-pink-500 shadow-2xl bg-white">
-              <img 
-                src={currentProject.image} 
-                alt={currentProject.title} 
-                className="rounded-xl w-full h-auto object-cover"
+            <button className="flex items-center bg-blue-700 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-800 transition">
+              <FaExternalLinkAlt className="mr-2" />
+              Live Demo
+            </button>
+          </div>
+
+          {/* ===== RIGHT IMAGE ===== */}
+          <div className="flex justify-center">
+            <div className="p-2 border-4 border-pink-300 rounded-2xl shadow-xl">
+              <img
+                src={projectImage}
+                alt="Project Showcase"
+                className="rounded-xl max-h-[400px] object-cover"
               />
             </div>
           </div>
-
-          
-          <button 
-            onClick={nextProject} 
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 -mr-6 bg-white p-3 rounded-full shadow-lg border border-gray-200 hover:bg-gray-100 transition"
-          >
-            <ArrowRight className="w-6 h-6 text-blue-600" />
-          </button>
         </div>
+
+        {/* Arrow Right */}
+        <button className="absolute -right-10 bg-white p-3 rounded-full shadow-lg hidden md:block border">
+          <FaArrowRight className="text-gray-600 text-lg" />
+        </button>
       </div>
     </section>
   );

@@ -1,18 +1,19 @@
 import React from 'react';
-import Header from '../components/Header';
 import Schedule from '../components/Schedule';
-import Pillars from '../components/Pillars';
-import Footer from '../components/Footer';
 
 const Program = () => {
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      <div className="pt-24">
-        <Schedule />
-        <Pillars />
-      </div>
-      <Footer />
+    <div>
+      <section className="pt-32 pb-16 text-center">
+        <h1 className="text-4xl font-bold text-blue-main">
+          Program & Jadwal Kegiatan
+        </h1>
+        <p className="text-gray-600 mt-4">
+          Rangkaian kegiatan terstruktur untuk pengembangan skill mahasiswa
+        </p>
+      </section>
+
+      <Schedule />
     </div>
   );
 };

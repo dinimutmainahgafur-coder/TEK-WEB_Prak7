@@ -1,64 +1,81 @@
 import React from 'react';
-import { Lightbulb, Wrench, Users, GraduationCap } from 'lucide-react'; 
-
+import { Lightbulb, Wrench, Users, GraduationCap } from 'lucide-react';
 
 const pillarsData = [
   { 
     title: 'Ideation', 
     icon: Lightbulb, 
-    bgColor: 'bg-yellow-100', 
-    iconColor: 'text-orange-500', 
-    desc: 'Mengembangkan ide-ide kreatif dan inovatif melalui brainstorming dan workshop ideation yang terarah.'
+    bg: 'bg-yellow-50',
+    iconBg: 'bg-yellow-200',
+    iconColor: 'text-yellow-700',
+    desc: 'Mengembangkan ide kreatif dan inovatif melalui brainstorming dan workshop ideation terarah.'
   },
   { 
     title: 'Creation', 
     icon: Wrench, 
-    bgColor: 'bg-green-100', 
-    iconColor: 'text-green-500', 
+    bg: 'bg-green-50',
+    iconBg: 'bg-green-200',
+    iconColor: 'text-green-700',
     desc: 'Mewujudkan ide menjadi karya nyata dengan dukungan tools dan teknologi terkini.'
   },
   { 
     title: 'Collaboration', 
     icon: Users, 
-    bgColor: 'bg-blue-100', 
-    iconColor: 'text-blue-500', 
-    desc: 'Bekerja sama dalam tim multidisiplin untuk menciptakan solusi yang komprehensif.'
+    bg: 'bg-blue-50',
+    iconBg: 'bg-blue-200',
+    iconColor: 'text-blue-700',
+    desc: 'Kolaborasi tim multidisiplin untuk menciptakan solusi yang berdampak.'
   },
   { 
     title: 'Guidance & Support', 
     icon: GraduationCap, 
-    bgColor: 'bg-pink-100', 
-    iconColor: 'text-pink-500', 
-    desc: 'Mendapat bimbingan dari mentor berpengalaman dan akses ke berbagai resources pembelajaran.'
+    bg: 'bg-pink-50',
+    iconBg: 'bg-pink-200',
+    iconColor: 'text-pink-700',
+    desc: 'Pendampingan mentor dan akses sumber belajar untuk pengembangan berkelanjutan.'
   },
 ];
 
 const Pillars = () => {
   return (
-    <section className="py-20 bg-gray-50" id="about">
-      <div className="max-w-7xl mx-auto text-center px-6">
-        <h2 className="text-3xl font-extrabold text-blue-800 mb-4">Empat Pilar Ruang Ekspresi</h2>
-        <p className="text-gray-600 mb-12 max-w-3xl mx-auto">
-          komprehensif yang dirancang untuk mengembangkan potensi kreatif mahasiswa melalui pendekatan holistik
-        </p>
+    <section
+      id="about"
+      className="bg-gradient-to-br from-white via-gray-50 to-blue-50 py-24"
+    >
+      <div className="max-w-7xl mx-auto px-6 text-center">
         
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <h2 className="text-4xl font-extrabold text-gray-900 mb-4">
+          Empat Pilar <span className="text-blue-600">Ruang Ekspresi</span>
+        </h2>
+
+        <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-16">
+          Pendekatan komprehensif untuk mengembangkan potensi kreatif mahasiswa
+          melalui ekosistem kolaboratif dan berkelanjutan.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {pillarsData.map((pillar) => (
-            <div 
-              key={pillar.title} 
-              className={`p-8 rounded-2xl shadow-md transition duration-300 hover:shadow-lg ${pillar.bgColor} flex flex-col items-center justify-start`} 
-              style={{ minHeight: '320px' }} 
+            <div
+              key={pillar.title}
+              className={`group p-8 rounded-3xl ${pillar.bg} shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl`}
             >
-             
-              <div className={`p-3 rounded-full mb-6 ${pillar.iconColor.replace('text', 'bg').replace('-500', '-200')}`}>
-                 <pillar.icon className={`w-6 h-6 ${pillar.iconColor}`} />
+              <div
+                className={`mx-auto mb-6 w-14 h-14 flex items-center justify-center rounded-2xl ${pillar.iconBg} group-hover:scale-110 transition`}
+              >
+                <pillar.icon className={`w-7 h-7 ${pillar.iconColor}`} />
               </div>
-              
-              <h3 className="text-lg font-bold mb-3 text-gray-800">{pillar.title}</h3>
-              <p className="text-sm text-gray-700">{pillar.desc}</p>
+
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                {pillar.title}
+              </h3>
+
+              <p className="text-sm text-gray-600 leading-relaxed">
+                {pillar.desc}
+              </p>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

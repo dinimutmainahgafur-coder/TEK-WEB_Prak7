@@ -1,27 +1,32 @@
-// src/App.jsx
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
-import React from 'react';
-// === PENTING: Gunakan HashRouter ===
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'; 
+import Home from './Pages/Home';
+import About from './Pages/About';
+import Program from './Pages/Program';
+import ProjectsPage from './Pages/Projects';
+import Contact from './Pages/Contact';
 
-// Pastikan Anda memiliki file Home.jsx di folder pages
-import Home from './pages/Home.jsx'; 
-
-const App = () => {
+function App() {
   return (
-    // Menggunakan HashRouter memastikan semua rute (meskipun di-refresh)
-    // akan selalu mengarah ke index.html, menghindari error 404 di server statis.
-    <Router>
-      <Routes>
-        {/* Rute utama untuk halaman beranda */}
-        <Route path="/" element={<Home />} />
-        
-        {/* Tambahkan rute untuk halaman lain di sini saat Anda membuatnya */}
-        {/* Contoh: <Route path="/about" element={<About />} /> */}
-        {/* Contoh: <Route path="/contact" element={<Contact />} /> */}
-      </Routes>
-    </Router>
+    <BrowserRouter>
+      <Header />
+
+      {/* OFFSET HEADER FIXED */}
+      <main className="pt-20 min-h-screen">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/program" element={<Program />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </main>
+
+      <Footer />
+    </BrowserRouter>
   );
-};
+}
 
 export default App;
